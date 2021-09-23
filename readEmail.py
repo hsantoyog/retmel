@@ -72,12 +72,25 @@ for x in range(i):
     email_from = str(email.header.make_header(email.header.decode_header(email_message['From'])))
     email_to = str(email.header.make_header(email.header.decode_header(email_message['To'])))
     subject = str(email.header.make_header(email.header.decode_header(email_message['Subject'])))
+    body = email_message.get_payload()[0].get_payload()
+
 
     # Imprimiendo en pantalla los datos
-    print(email_from + ' ' + email_to + ' ' + subject)
+    print(email_from)
+    print(email_to)
+    print(subject)
+    print(body)
+
+    if body.rfind("devops") == -1:
+        print("No contiene el término en el body")
+    else:
+        print("Válido")
+    print("")
+
 
     # Hash del mensaje (sha256)
-
+    email_hash_id = hashlib.sha256(raw_email).hexdigest()
+    print(email_hash_id)
 
 con.close()
 con.logout()
