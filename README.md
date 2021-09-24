@@ -47,6 +47,11 @@ Una vez configurada, para usar la aplicación, basta ejecutar main.py en una ter
 ```python
 python main.py
 ```
-Posteriormente se preguntará al usuario la cantidad de segundos a esperar antes de cada ejecución. Después de esta configuración, la aplicación estará llevando a cabo revisiones de la bandeja de entrada cada vez que se cumpla el tiempo establecido, recuperando los correos nuevos que cumplan con el criterio establecido.
+Posteriormente se preguntará al usuario la cantidad de segundos a esperar antes de cada ejecución. 
+La aplicación utiliza por defecto la función la función emailTokenConnect.getEmails() para la recuperación del correo. En la primera ejecución se deberá generar un archivo token.pickles con la autorización del usuario, por lo que se abrirá una ventana del navegador en el cual se deberá iniciar sesión con las credenciales de la cuenta hsantoyo.retomeli@gmail.com. Dicha cuenta es la única autorizada a ejecutar este código. Al no ser una App Verificada por Google, se mostrará una advertencia al usuario, donde deberá seleccionarse la opción de "Continuar". Posteriormente será necesario otorgar el permiso de lectura de correo electrónico. Al concluir la autenticación, se mostrará un aviso al usuario, tras lo cual se podrá cerrar la ventana del navegador.
+
+En las siguiente iteraciones, no será necesario volver a autenticar a la aplicación, salvo que ésta caduque o el usuario retire el acceso de la aplicación desde la configuración de su cuenta.
+
+Finalizada esta configuración, la aplicación estará llevando a cabo revisiones de la bandeja de entrada cada vez que se cumpla el tiempo indicado, recuperando los correos nuevos que cumplan con el criterio establecido.
 
 El usuario puede detener en cualquier momento la ejecución de este script presionando Ctrl+C en su teclado.
