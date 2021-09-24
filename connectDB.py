@@ -12,6 +12,9 @@
 import mysql.connector
 import numpy as np
 
+# La siguiente función es la responsable de realizar la conexión a la base
+# de datos MySQL. Es importante configurar las variables host, user, password
+# y database con los valores correspondientes para efectuar la conexión.
 def connectMySQL():
     mydb = mysql.connector.connect(
     host="HOST",
@@ -21,6 +24,8 @@ def connectMySQL():
     )
     return mydb
 
+# existEmailID verifica, dado un EmailID, que no exista un registro previo
+# de dicho correo. En caso de existir dicho ID, regresa True
 def existsEmailID(EmailID):
     mydb = connectMySQL()
     mycursor = mydb.cursor()
@@ -33,6 +38,9 @@ def existsEmailID(EmailID):
     else:
         return False
 
+# La función insertNewEmailID recibe como parámetros el ID del correo
+# la fecha de recepción, el remitente y el asunto, para insertar el
+# registro en la base de datos.
 def insertNewEmailID(EmailID,Date,From,Subject):
     mydb = connectMySQL()
     mycursor = mydb.cursor()
@@ -43,12 +51,14 @@ def insertNewEmailID(EmailID,Date,From,Subject):
         From,
         Subject
     ]
-
+    # Aquí utilizamos la librería numpy para transponer los valores, de manera que podamos
+    # hacer inserciones múltiples, en caso de recibir varios correos para registrar.
     val = np.array([EmailID,Date,From,Subject])
     val_transpose = val.transpose()
     val_list = val_transpose.tolist()
     mycursor.executemany(SQLQuery,val_list)
     mydb.commit()
+    # Se notificará al usuario cuántos nuevos correos fueron agregados.
     if mycursor.rowcount > 1:
         print("Se agregaron", mycursor.rowcount, "registros nuevos a la base de datos.")
     elif mycursor.rowcount == 1:
