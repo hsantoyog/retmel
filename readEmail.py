@@ -3,7 +3,7 @@
 # Archivo: readEmail.py
 # Autor: Héctor Santoyo García
 # ----------------------------
-# Esta clase es la responsable de ejecutar el escaneo
+# Esta función es la responsable de ejecutar el escaneo
 # y recuperación de los correos que tengan dentro de
 # su contenido la palabra 'devops', sin importar
 # mayúsculas ni minúsculas. Se descartarán aquellos
@@ -24,7 +24,7 @@ def readEmail():
     #####################
      #// Conexión a Gmail
     usuario = 'hsantoyo.retomeli@gmail.com'
-    contrasena = 'R3t0M3l1@2021'
+    contrasena = 'R3t0M3l1@2021s'
     imap_url = 'imap.gmail.com'
 
     #// Resultados de la búsqueda, en arrays
@@ -34,9 +34,12 @@ def readEmail():
     arr_emailSubject = []
 
     #// Conexión de imaplib
-    con = imaplib.IMAP4_SSL(imap_url)
-    con.login(usuario, contrasena)
-
+    try:
+        con = imaplib.IMAP4_SSL(imap_url)
+        con.login(usuario, contrasena)
+    except ValueError:
+        print("Error de conexión al servicio de correo.") 
+        return False
     # print(con.list())
 
     #####################
