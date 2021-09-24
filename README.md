@@ -11,8 +11,18 @@ Posteriormente, dichos correos son registrados dentro de una base de datos MySQL
 
  ## Configuración
  Para ejecutar la aplicación, es necesario configurar primero una serie de parámetros:
-  > readEmail.py - Aquí será necesario editar las variables usuario y contrasena con los datos de acceso a la cuenta de correo.
-  > connectDB.py - Las variables a configurar aquí son host, user, password y database, con los datos correspondientes para acceder a la base de datos creada para almacenar los registros de correo.
+ 
+  > readEmail.py - OBSOLETA
+En caso de utilizarla, aquí será necesario editar las variables usuario y contrasena con los datos de acceso a la cuenta de correo. Esta función se considera insegura, ya que expone las credenciales del usuario. Adicionalmente, el usuario debe habilitar la opción de "Permitir aplicaciones inseguras" para que pueda funcionar con este método.
+
+  > emailTokenConnect.py
+Función que sustituye a readEmail. Realiza la conexión a Gmail por medio de un token, que es almacenado en un archivo llamado token.pickle. El usuario no necesita almacenar sus credenciales dentro del código, se restringe a la aplicación a únicamente acceder a la lectura de correos, y adicionalmente puede retirarse el acceso a la aplicación en cualquier momento. No es necesario realizar ninguna configuración adicional dentro de este documento.
+
+  > connectDB.py
+Las variables a configurar aquí son host, user, password y database, con los datos correspondientes para acceder a la base de datos creada para almacenar los registros de correo.
+
+  > main.py
+Documento principal donde inicia la ejecución de la aplicación. Por defecto utiliza emailTokenConnect para acceder a los correos.
 
 ## Instalación de componentes
 Para poder utilizar la aplicación, es necesario instalar Python 3.x y MySQL, así como configurar dichas herramientas.
