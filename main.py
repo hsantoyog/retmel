@@ -1,4 +1,5 @@
-import imaplib, email
+import connectDB
+import readEmail
 
 # Introducción y bienvenida
 print("¡Hola! Bienvenido a retmel. Vamos a leer tu bandeja de entrada.")
@@ -17,12 +18,18 @@ for c in cars:
     print(c)
     print("Fin del ciclo")
 
-# Manejo de excepciones
-while True:
-    try:
-        x = int(input("Please enter a number: "))
-        break
-    except ValueError:
-        print("No es un número correcto, por favor intenta nuevamente")
 
-print(x)
+# Manejo de excepciones
+#while True:
+#    try:
+#        x = int(input("Please enter a number: "))
+#        break
+#    except ValueError:
+#        print("No es un número correcto, por favor intenta nuevamente")
+
+#print(x)
+
+
+arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = readEmail.readEmail()
+
+print("")
