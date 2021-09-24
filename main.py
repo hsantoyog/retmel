@@ -84,7 +84,7 @@ while TimeLoop:
             # Llamada a la función de revisión del correo.
             try:
                 # arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = readEmail.readEmail() # OBSOLETO
-                connectDB.insertNewEmailID(arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject)
+                arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = emailTokenConnect.getEmails()
             except ValueError:
                 print("Error al intentar acceder a los correos.")    
             # Insertamos dentro de la base de datos MySQL aquellos correos nuevos.
