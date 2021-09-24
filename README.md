@@ -12,27 +12,28 @@ Posteriormente, dichos correos son registrados dentro de una base de datos MySQL
  ## Configuración
  Para ejecutar la aplicación, es necesario configurar primero una serie de parámetros:
  
-  > readEmail.py - OBSOLETA
+  > readEmail.py - OBSOLETA |
 En caso de utilizarla, aquí será necesario editar las variables usuario y contrasena con los datos de acceso a la cuenta de correo. Esta función se considera insegura, ya que expone las credenciales del usuario. Adicionalmente, el usuario debe habilitar la opción de "Permitir aplicaciones inseguras" para que pueda funcionar con este método.
 
-  > emailTokenConnect.py
+  > emailTokenConnect.py |
 Función que sustituye a readEmail. Realiza la conexión a Gmail por medio de un token, que es almacenado en un archivo llamado token.pickle. El usuario no necesita almacenar sus credenciales dentro del código, se restringe a la aplicación a únicamente acceder a la lectura de correos, y adicionalmente puede retirarse el acceso a la aplicación en cualquier momento. No es necesario realizar ninguna configuración adicional dentro de este documento.
 
-  > connectDB.py
+  > connectDB.py |
 Las variables a configurar aquí son host, user, password y database, con los datos correspondientes para acceder a la base de datos creada para almacenar los registros de correo.
 
-  > main.py
+  > main.py |
 Documento principal donde inicia la ejecución de la aplicación. Por defecto utiliza emailTokenConnect para acceder a los correos.
 
 ## Instalación de componentes
 Para poder utilizar la aplicación, es necesario instalar Python 3.x y MySQL, así como configurar dichas herramientas.
 
 ### Python
-Puede instalarse desde una imagen de Docker y ejecutarse en un contenedor, o utilizar los paquetes de instalación para Windows (tanto x86, x64 y Windows store), MacOS, Linux, etc. El código fue desarrollado en Python 3.9, pero sus funciones son compatibles con versiones anteriores de Python 3. Además de las librerías incluídas, es necesario instalar mysql_connector y numpy:
+Puede instalarse desde una imagen de Docker y ejecutarse en un contenedor, o utilizar los paquetes de instalación para Windows (tanto x86, x64 y Windows store), MacOS, Linux, etc. El código fue desarrollado en Python 3.9, pero sus funciones son compatibles con versiones anteriores de Python 3. Además de las librerías incluídas, es necesario instalar mysql_connector, numpy y las librerías de acceso a las APIs de Google:
 
 ```bash
 python -m pip install mysql-connector-python
 python -m pip install numpy
+python -m pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
 ### MySQL
