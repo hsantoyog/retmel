@@ -1,3 +1,11 @@
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# IMPORTANTE
+# Esta función está obsoleta.
+# Se recomienda utilizar emailTokenConnect en
+# su lugar para no exponer las credenciales del
+# usuario de correo.
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 #+++++++++++++++++++#
 #*******************#
 # Archivo: readEmail.py
@@ -23,8 +31,8 @@ def readEmail():
     # Variables globales
     #####################
      #// Conexión a Gmail
-    usuario = 'hsantoyo.retomeli@gmail.com'
-    contrasena = 'R3t0M3l1@2021s'
+    usuario = 'ACCOUNT@gmail.com'
+    contrasena = 'PASSWORD'
     imap_url = 'imap.gmail.com'
 
     #// Resultados de la búsqueda, en arrays

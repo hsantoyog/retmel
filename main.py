@@ -21,6 +21,7 @@
 import connectDB
 import readEmail
 import time
+import emailTokenConnect
 
 # Introducción y bienvenida
 print("¡Hola! Bienvenido a RetMel. Vamos a leer tu bandeja de entrada.")
@@ -42,7 +43,18 @@ print("Inicia primera revisión de la bandeja de entrada...")
 # Obtenemos los resultados de la llamada a la función readEmail(), responsable de
 # recuperar la información de los correos no registrados.
 try:
-    arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = readEmail.readEmail()
+    # La siguiente función es parte de la primera versión del código, utiliza directamente las
+    # credenciales del usuario para obtener los correos. Se aconseja utilizar en su lugar la
+    # función emailTokenConnect.getEmails(), el cual utiliza en su lugar un token y la autorización
+    # del usuario a través de permisos para que la aplicación lea sus correos
+    # Nota: el emailID obtenido es diferente al de emailTokenConnect.getEmails(), por los que ambas
+    # funciones no son compatibles entre sí.
+    # arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = readEmail.readEmail()
+
+    # La siguiente línea es el approach más reciente para obtener los correos del usuario sin
+    # exponer sus credenciales dentro del código.
+    arr_emailID, arr_emailDate, arr_emailFrom, arr_emailSubject = emailTokenConnect.getEmails()
+
 except ValueError:
     print("Error al intentar acceder a los correos.")    
 # Insertamos dentro de la base de datos MySQL aquellos correos nuevos.

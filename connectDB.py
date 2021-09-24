@@ -14,10 +14,10 @@ import numpy as np
 
 def connectMySQL():
     mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Graz13M1ll3",
-    database="retmel"
+    host="HOST",
+    user="USER",
+    password="PASSWORD",
+    database="DATABASE_RETMEL"
     )
     return mydb
 
